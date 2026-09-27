@@ -1,1 +1,4 @@
-.claude/
+# Only the shared Claude Code user config is tracked
+.claude/*
+!.claude/settings.json
+!.claude/statusline-command.sh

@@ -11,8 +11,9 @@ README.*
 LICENSE.*
 COPYING
 
-# Bootstrap script — run from the repo, not linked into $HOME
+# Bootstrap script and package list — used from the repo, not linked into $HOME
 install\.sh
+Brewfile
 
-# Claude Code project settings for THIS repo — must not be linked into ~/.claude
-\.claude
+# Machine-local Claude Code settings — must not be linked into ~/.claude
+^/\.claude/settings\.local\.json

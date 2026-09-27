@@ -12,8 +12,8 @@ for p in /opt/homebrew/bin/brew /usr/local/bin/brew /home/linuxbrew/.linuxbrew/b
   [ -x "$p" ] && eval "$("$p" shellenv)" && break
 done
 
-# 2. CLI tools referenced by .zshrc
-brew install stow starship zoxide atuin zsh-syntax-highlighting
+# 2. Packages and apps
+brew bundle --file="$(dirname "$0")/Brewfile"
 
 # 3. Oh My Zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then

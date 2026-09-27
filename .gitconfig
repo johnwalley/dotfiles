@@ -1,0 +1,20 @@
+[user]
+	name = John Walley
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBEN5PXNZCrihT1madudlK7EeC8+0922SBPG2NaT6ai9
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[commit]
+	gpgsign = true
+[core]
+	editor = code --wait
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+# Machine-specific settings (e.g. user.email) — not tracked
+[include]
+	path = ~/.gitconfig.local

@@ -117,10 +117,8 @@ if command -v brew >/dev/null; then
 fi
 
 # atuin (shell history)
-if [ -f "$HOME/.atuin/bin/env" ]; then
-  . "$HOME/.atuin/bin/env"
-  command -v atuin >/dev/null && eval "$(atuin init zsh)"
-fi
+[ -f "$HOME/.atuin/bin/env" ] && . "$HOME/.atuin/bin/env"
+command -v atuin >/dev/null && eval "$(atuin init zsh)"
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
@@ -145,4 +143,19 @@ command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 case ":$PATH:" in
   *":$HOME/.vite-plus/bin:"*) ;;
   *) [ -d "$HOME/.vite-plus/bin" ] && export PATH="$PATH:$HOME/.vite-plus/bin" ;;
+esac
+
+# Rust (cargo)
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+
+# LM Studio CLI (lms)
+case ":$PATH:" in
+  *":$HOME/.lmstudio/bin:"*) ;;
+  *) [ -d "$HOME/.lmstudio/bin" ] && export PATH="$PATH:$HOME/.lmstudio/bin" ;;
+esac
+
+# Personal scripts
+case ":$PATH:" in
+  *":$HOME/bin:"*) ;;
+  *) export PATH="$HOME/bin:$PATH" ;;
 esac
