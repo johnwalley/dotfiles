@@ -11,5 +11,8 @@ README.*
 LICENSE.*
 COPYING
 
+# Bootstrap script — run from the repo, not linked into $HOME
+install\.sh
+
 # Claude Code project settings for THIS repo — must not be linked into ~/.claude
 \.claude
