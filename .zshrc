@@ -140,4 +140,9 @@ esac
 command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 
 # Vite+ bin (https://viteplus.dev)
-[ -f "$HOME/.vite-plus/env" ] && . "$HOME/.vite-plus/env"
+# Appended rather than sourcing ~/.vite-plus/env, which prepends its node/npm/npx
+# shims and would shadow nvm. vp/vpx and global tools remain available.
+case ":$PATH:" in
+  *":$HOME/.vite-plus/bin:"*) ;;
+  *) [ -d "$HOME/.vite-plus/bin" ] && export PATH="$PATH:$HOME/.vite-plus/bin" ;;
+esac
