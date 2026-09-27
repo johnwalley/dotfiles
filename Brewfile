@@ -26,6 +26,7 @@ brew "lychee"
 brew "websocat"
 brew "wget"
 brew "pnpm"
+brew "mise"
 
 # Data & media
 brew "ffmpeg"

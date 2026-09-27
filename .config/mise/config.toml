@@ -1,0 +1,7 @@
+# Global tool versions; a project's .nvmrc / .node-version / mise.toml overrides these
+[tools]
+node = "24"
+
+[settings]
+# Read .nvmrc and .node-version files (off by default since mise 2025.10)
+idiomatic_version_file_enable_tools = ["node"]

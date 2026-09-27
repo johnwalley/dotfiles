@@ -45,7 +45,7 @@ command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 
 # Vite+ bin (https://viteplus.dev)
 # Appended rather than sourcing ~/.vite-plus/env, which prepends its node/npm/npx
-# shims and would shadow nvm. vp/vpx and global tools remain available.
+# shims and would shadow mise. vp/vpx and global tools remain available.
 case ":$PATH:" in
   *":$HOME/.vite-plus/bin:"*) ;;
   *) [ -d "$HOME/.vite-plus/bin" ] && export PATH="$PATH:$HOME/.vite-plus/bin" ;;
@@ -68,6 +68,10 @@ case ":$PATH:" in
   *":$HOME/bin:"*) ;;
   *) export PATH="$HOME/bin:$PATH" ;;
 esac
+
+# mise (node and other runtimes; follows .nvmrc per directory). After the PATH
+# edits above so its prompt hook keeps the active runtime first on PATH.
+command -v mise >/dev/null && eval "$(mise activate zsh)"
 
 # Role-specific config (work/personal), then untracked machine-local config
 DOTFILES="${${:-$HOME/.zshrc}:A:h}"
