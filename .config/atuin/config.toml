@@ -51,12 +51,12 @@
 ## To use workspace mode by default when available, set this to true and
 ## set filter_mode to "workspace" or leave it unspecified and 
 ## set search.filters to include "workspace" before other filter modes.
-# workspaces = false
+workspaces = true
 
 ## which filter mode to use when atuin is invoked from a shell up-key binding
 ## the accepted values are identical to those of "filter_mode"
 ## leave unspecified to use same mode set in "filter_mode"
-# filter_mode_shell_up_key_binding = "global"
+filter_mode_shell_up_key_binding = "directory"
 
 ## which search mode to use when atuin is invoked from a shell up-key binding
 ## the accepted values are identical to those of "search_mode"
@@ -107,6 +107,10 @@
 #   "^secret-cmd",
 #   "^innocuous-cmd .*--secret=.+",
 # ]
+history_filter = [
+  # GitLab Workflow VS Code extension's shell-environment probe
+  '^sh -c echo "WSL=\$\{WSL_DISTRO_NAME',
+]
 
 ## prevent commands run with cwd matching any of these regexes from being written
 ## to history. Note that these regular expressions are unanchored, i.e. if they don't

@@ -15,3 +15,7 @@ disabled = true
 # Hide the AWS module
 [aws]
 disabled = true
+
+# Show the exit code when a command fails
+[status]
+disabled = false

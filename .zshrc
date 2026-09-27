@@ -17,13 +17,7 @@ source $ZSH/oh-my-zsh.sh
 
 command -v starship >/dev/null && eval "$(starship init zsh)"
 
-# zsh-syntax-highlighting via Homebrew (prefix-agnostic: works on Intel, ARM, Linux)
-if command -v brew >/dev/null; then
-  source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" 2>/dev/null
-fi
-
 # atuin (shell history)
-[ -f "$HOME/.atuin/bin/env" ] && . "$HOME/.atuin/bin/env"
 command -v atuin >/dev/null && eval "$(atuin init zsh)"
 
 # bun completions
@@ -78,3 +72,9 @@ DOTFILES="${${:-$HOME/.zshrc}:A:h}"
 DOTFILES_ROLE="$(cat "$HOME/.config/dotfiles/role" 2>/dev/null)"
 [ -n "$DOTFILES_ROLE" ] && [ -f "$DOTFILES/zsh/$DOTFILES_ROLE.zsh" ] && source "$DOTFILES/zsh/$DOTFILES_ROLE.zsh"
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
+
+# zsh-syntax-highlighting must be sourced last so it wraps widgets defined above (atuin etc.)
+# zsh-syntax-highlighting via Homebrew (prefix-agnostic: works on Intel, ARM, Linux)
+if command -v brew >/dev/null; then
+  source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" 2>/dev/null
+fi
