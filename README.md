@@ -11,7 +11,14 @@ $ git clone https://github.com/johnwalley/dotfiles.git
 $ cd dotfiles
 ```
 
-then use GNU stow to create symlinks. Preview first with a dry run:
+For a fresh machine, the bootstrap script installs Homebrew, the CLI tools,
+Oh My Zsh + custom plugins, and then stows everything:
+
+```
+$ ./install.sh
+```
+
+To manage the symlinks manually instead, use GNU stow. Preview first with a dry run:
 
 ```
 $ stow -nv .        # dry run: show what would be linked, change nothing
