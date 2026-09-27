@@ -1,3 +1,7 @@
+# Homebrew in every shell (not just login shells), so fpath -- and the compinit dump -- stay stable
+[ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
+typeset -U path fpath
+
 # Machine-specific environment (kept out of the repo)
 [ -f "$HOME/.profile" ] && source "$HOME/.profile"
 
