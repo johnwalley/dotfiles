@@ -1,0 +1,15 @@
+# Stow ignore list (this file REPLACES stow's built-in defaults).
+# One Perl regex per line; no-slash patterns match the basename.
+
+# VCS / stow meta
+\.git
+\.gitignore
+\.stow-local-ignore
+
+# Repo docs — not meant for $HOME
+README.*
+LICENSE.*
+COPYING
+
+# Claude Code project settings for THIS repo — must not be linked into ~/.claude
+\.claude
