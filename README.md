@@ -15,8 +15,20 @@ For a fresh machine, the bootstrap script installs Homebrew, the CLI tools,
 Oh My Zsh + custom plugins, and then stows everything:
 
 ```
-$ ./install.sh
+$ ./install.sh            # prompts for the machine role
+$ ./install.sh personal   # or pass it: work | personal
 ```
+
+## Work vs personal machines
+
+The role is stored in `~/.config/dotfiles/role` (untracked) and drives:
+
+- **Brewfile**: work-only packages sit in an `if work` block.
+- **Shell**: `.zshrc` sources `zsh/<role>.zsh` from this repo, then
+  `~/.zshrc.local` (untracked, for secrets and one-off machine config).
+- **Git identity** doesn't depend on the role: the personal email is the default,
+  and any repo with a `gitlab.com/cambridgeintelligence` remote uses
+  `.gitconfig.work` instead.
 
 To manage the symlinks manually instead, use GNU stow. Preview first with a dry run:
 

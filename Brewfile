@@ -1,3 +1,7 @@
+# Machine role ("work" or "personal"), written by install.sh
+role_file = File.expand_path("~/.config/dotfiles/role")
+work = File.exist?(role_file) && File.read(role_file).strip == "work"
+
 tap "anomalyco/tap"
 tap "darrylmorley/whatcable"
 
@@ -10,8 +14,6 @@ brew "zsh-syntax-highlighting"
 
 # Git & forges
 brew "gh"
-brew "glab"
-brew "gitlab-runner"
 brew "git-lfs"
 brew "lazygit"
 
@@ -38,13 +40,19 @@ brew "miller"
 brew "herdr"
 brew "anomalyco/tap/opencode", trusted: true
 cask "claude-code@latest"
-cask "copilot-cli"
 
 # Apps
 cask "ghostty"
 cask "iterm2"
 cask "raycast"
-cask "docker-desktop"
 cask "betterdisplay"
 cask "darrylmorley/whatcable/whatcable", trusted: true
 cask "font-hack-nerd-font"
+
+# Work only
+if work
+  brew "glab"
+  brew "gitlab-runner"
+  cask "copilot-cli"
+  cask "docker-desktop"
+end

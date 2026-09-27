@@ -159,3 +159,9 @@ case ":$PATH:" in
   *":$HOME/bin:"*) ;;
   *) export PATH="$HOME/bin:$PATH" ;;
 esac
+
+# Role-specific config (work/personal), then untracked machine-local config
+DOTFILES="${${:-$HOME/.zshrc}:A:h}"
+DOTFILES_ROLE="$(cat "$HOME/.config/dotfiles/role" 2>/dev/null)"
+[ -n "$DOTFILES_ROLE" ] && [ -f "$DOTFILES/zsh/$DOTFILES_ROLE.zsh" ] && source "$DOTFILES/zsh/$DOTFILES_ROLE.zsh"
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"

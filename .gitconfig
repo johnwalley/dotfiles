@@ -1,5 +1,6 @@
 [user]
 	name = John Walley
+	email = john@walley.org.uk
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBEN5PXNZCrihT1madudlK7EeC8+0922SBPG2NaT6ai9
 [gpg]
 	format = ssh
@@ -15,6 +16,8 @@
 	process = git-lfs filter-process
 	required = true
 
-# Machine-specific settings (e.g. user.email) — not tracked
-[include]
-	path = ~/.gitconfig.local
+# Work identity for any repo whose remote is in the work GitLab group
+[includeIf "hasconfig:remote.*.url:https://gitlab.com/cambridgeintelligence/**"]
+	path = ~/.gitconfig.work
+[includeIf "hasconfig:remote.*.url:git@gitlab.com:cambridgeintelligence/**"]
+	path = ~/.gitconfig.work

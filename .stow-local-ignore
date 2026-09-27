@@ -15,5 +15,8 @@ COPYING
 install\.sh
 Brewfile
 
+# Role-specific shell config — sourced from the repo by .zshrc
+^/zsh
+
 # Machine-local Claude Code settings — must not be linked into ~/.claude
 ^/\.claude/settings\.local\.json
