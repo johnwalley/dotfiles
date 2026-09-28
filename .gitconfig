@@ -31,3 +31,8 @@
 	prune = true
 [rerere]
 	enabled = true
+
+# Untracked machine-local overrides (e.g. commit.gpgsign = false where 1Password is absent).
+# Must stay last so it wins. Missing file is ignored.
+[include]
+	path = ~/.gitconfig.local
