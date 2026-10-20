@@ -1,6 +1,10 @@
 # Global tool versions; a project's .nvmrc / .node-version / mise.toml overrides these
 [tools]
 node = "24"
+# Language server for Claude Code's typescript-lsp plugin; npm: tools live outside
+# any one Node install, so they stay on PATH whatever version a project selects
+"npm:typescript-language-server" = "latest"
+"npm:typescript" = "latest"
 
 [settings]
 # Read .nvmrc and .node-version files (off by default since mise 2025.10)

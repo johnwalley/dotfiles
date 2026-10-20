@@ -24,13 +24,17 @@
 [init]
 	defaultBranch = main
 [pull]
-	rebase = true
+	ff = only
 [push]
 	autoSetupRemote = true
 [fetch]
 	prune = true
 [rerere]
 	enabled = true
+[diff]
+	algorithm = histogram
+[merge]
+	conflictStyle = zdiff3
 
 # Untracked machine-local overrides (e.g. commit.gpgsign = false where 1Password is absent).
 # Must stay last so it wins. Missing file is ignored.
