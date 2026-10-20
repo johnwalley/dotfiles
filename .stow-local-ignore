@@ -5,6 +5,7 @@
 \.git
 \.gitignore
 \.stow-local-ignore
+\.stowrc
 
 # Repo docs — not meant for $HOME
 README.*

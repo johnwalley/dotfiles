@@ -31,20 +31,22 @@ echo "$role" > "$ROLE_FILE"
 # 3. Packages and apps (Brewfile reads the role)
 brew bundle --file="$(dirname "$0")/Brewfile"
 
-# 4. Oh My Zsh
+# 4. Symlink the dotfiles (.stowrc sets the target and disables folding).
+# Before Oh My Zsh, whose installer would otherwise write a template ~/.zshrc
+# that stow then refuses to replace.
+cd "$(dirname "$0")"
+stow -R .
+
+# 5. Oh My Zsh (KEEP_ZSHRC: leave the stowed ~/.zshrc in place)
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
-# 5. Custom Oh My Zsh plugins
+# 6. Custom Oh My Zsh plugins
 ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 [ -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ] || \
   git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
 [ -d "$ZSH_CUSTOM/plugins/zsh-completions" ] || \
   git clone https://github.com/zsh-users/zsh-completions "$ZSH_CUSTOM/plugins/zsh-completions"
-
-# 6. Symlink the dotfiles (run from the repo root)
-cd "$(dirname "$0")"
-stow -R .
 
 echo "Done. Open a new terminal or run: exec zsh"

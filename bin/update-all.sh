@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# update-all.sh — keep developer tooling on this Mac up to date and secure.
+# update-all.sh — keep developer tooling on this Mac up to date.
 # Safe to re-run anytime. Skips steps for tools that aren't installed.
 
 set -uo pipefail
@@ -28,15 +28,24 @@ if have rustup; then
   rustup update
 fi
 
-if have npm; then
-  bold "npm: self-update + outdated globals"
-  npm install -g npm@latest
-  echo "Outdated global packages:"
-  npm outdated -g || true
+if have mise; then
+  bold "mise: runtimes and npm: tools"
+  mise upgrade
+fi
+
+if [ -d "$HOME/.oh-my-zsh" ]; then
+  bold "Oh My Zsh + custom plugins"
+  zsh "$HOME/.oh-my-zsh/tools/upgrade.sh" || true
+  for plugin in "$HOME"/.oh-my-zsh/custom/plugins/*/.git; do
+    [ -d "$plugin" ] || continue
+    dir="${plugin%/.git}"
+    echo "${dir##*/}"
+    git -C "$dir" pull --ff-only --quiet || true
+  done
 fi
 
 if have brew; then
-  bold "Security audit (Homebrew)"
+  bold "Homebrew health check"
   brew doctor || true
 fi
 
